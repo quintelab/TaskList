@@ -13,9 +13,13 @@ namespace ToDo.iOS
 
 		public SQLite.SQLiteConnection GetConnection()
 		{
-			var path = "/users/bravi/Data/ToDo.db";
-			File.Open (path, FileMode.OpenOrCreate);
-			var conn = new SQLite.SQLiteConnection (path);
+			var sqliteFilename = "ToDo.db";
+			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+			string libraryPath = Path.Combine (documentsPath, "..", "Library"); // Library folder
+			var path = Path.Combine(libraryPath, sqliteFilename);
+			// Create the connection
+			var conn = new SQLite.SQLiteConnection(path);
+			// Return the database connection
 			return conn;
 		}
 	}
