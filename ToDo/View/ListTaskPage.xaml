@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:local="clr-namespace:ToDo;Assembly=ToDo"
+			 x:Class="ToDo.ListTaskPage">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<local:DateTimeConverter x:Key="dtConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<StackLayout Padding="30">
+		<ListView x:Name="ToDoList" ItemTapped="OnSelected">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<ViewCell.View>
+							<StackLayout Padding="5" Spacing="1">
+								<Label x:Name="TaskNameDisplay" Text="{Binding TaskName}" FontSize="12" TextColor="Red" />
+								<StackLayout Orientation="Horizontal">
+									<Label Text="Priority:" FontSize="10" />
+									<Label Text="{Binding Priority}" FontSize="10" />
+									<Label Text="Due:" FontSize="10" />
+									<Label Text="{Binding DueDate, Converter={StaticResource dtConverter}}" FontSize="10" />
+								</StackLayout>
+							</StackLayout>
+						</ViewCell.View>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</StackLayout>
+</ContentPage>
